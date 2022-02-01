@@ -42,6 +42,8 @@ const accounts = [
   </ul>
   <p>
     Net Total:
+    <!-- reduce is higher order function -->
+    <!-- (total, account) => total + account.amount (arrow function syntax) -->
     {{ accounts.reduce((total, account) => total + account.amount, 0) }}
   </p>
   <!-- #round 1 (0, account#1) :   0+10000 
