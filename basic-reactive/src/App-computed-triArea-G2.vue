@@ -10,9 +10,10 @@ const result = computed(() => {
 
 <template>
   <p>Base: {{ base }}</p>
-  <input type="number" v-model="base" />
+  <button @click="base++">Add 1 to Base</button>
   <p>Height: {{ height }}</p>
-  <input type="number" v-model="height" />
+  <button @click="height++">Add 1 to Height</button>
+
   <p>Area Result: {{ result }}</p>
 </template>
 
