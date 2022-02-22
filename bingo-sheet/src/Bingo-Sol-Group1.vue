@@ -17,14 +17,14 @@ const showNumber = (pos) => {
     isError.value = false
   } else isError.value = true
 }
-const useNumberInBingo = (randNumber) =>
-  bingoSheet.value.some((cell) => cell === randNumber)
+const useNumberInBingo = (randNumber) => {
+  return bingoSheet.value.some((cell) => cell === randNumber)
+}
 const reset = () => {
   isError.value = false
   randNumbers.value = []
-  bingoSheet.value.fill(0, 0)
+  bingoSheet.value = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
-
 const bingoDone = computed(() => {
   return (
     randNumbers.value.length === 99 ||
