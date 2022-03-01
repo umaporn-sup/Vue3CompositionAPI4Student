@@ -1,6 +1,7 @@
 <script setup>
 // local registration
-import BaseButton from './components/BaseButton.vue'
+import BaseButton from './components/G3/BaseButton.vue'
+
 console.clear()
 const testMe1 = () => console.log('test me 1')
 const testMe2 = (e) => console.log('test me 2', e)
@@ -24,7 +25,7 @@ const testMe6 = (e, n) => console.log('test me 6', e, n)
       <button @click="testMe6(999, $event)">Test Me6</button>
     </div>
     <div>
-      <BaseButton buttonName="Click Me1" @clickMe="testMe1" />
+      <BaseButton button-name="Click Me1" @clickMe="testMe1" />
     </div>
   </div>
 </template>

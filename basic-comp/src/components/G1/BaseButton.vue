@@ -3,14 +3,15 @@ defineEmits(['clickMe'])
 const prop = defineProps({
   buttonName: {
     type: String,
-    require: true
+    // require: true
+    default: 'OK'
   }
 })
-console.log(prop.buttonName)
+// console.log(prop.buttonName)
 </script>
 
 <template>
-  <button class="button-color" @click="$emit('clickMe')">
+  <button class="button-color" @click="$emit('clickMe', $event)">
     {{ buttonName }}
   </button>
 </template>
