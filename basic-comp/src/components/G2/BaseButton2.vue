@@ -1,5 +1,5 @@
 <script setup>
-defineEmits(['clickMe'])
+defineEmits(['likeMe'])
 const prop = defineProps({
   buttonName: {
     type: String,
@@ -12,13 +12,13 @@ const num = 555
 </script>
 
 <template>
-  <button class="button-color" @click="$emit('clickMe', $event)">
+  <button class="button-color" @click="$emit('likeMe', false, 404, 'FAIL')">
     {{ buttonName }}
   </button>
 </template>
 
 <style scoped>
 .button-color {
-  background-color: aqua;
+  background-color: yellowgreen;
 }
 </style>

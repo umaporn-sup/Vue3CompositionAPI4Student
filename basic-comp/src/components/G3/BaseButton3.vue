@@ -13,7 +13,10 @@ const prop = defineProps({
 </script>
 
 <template>
-  <!-- <button class="button-color" @click="$emit('updateMe', 'UPDATE_ME')">
+  <!-- <button
+    class="button-color"
+    @click="$emit('updateMe', 'UPDATE_ME', 200, true)"
+  >
     {{ buttonName }}
   </button> -->
 
