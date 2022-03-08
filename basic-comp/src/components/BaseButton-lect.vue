@@ -1,7 +1,5 @@
 <script setup>
 import { ref, computed } from 'vue'
-import LineMdAccount from './LineMdAccount.vue'
-
 const prop = defineProps({
   yourText: {
     type: String,
@@ -23,8 +21,7 @@ console.log(prop.yourText)
 
 <template>
   <!-- <button class="button-color">{{ buttonText }}</button> -->
-  <LineMdAccount />
-  <button class="button-color">{{ yourText.toLowerCase() }}</button>
+  <button class="button-color">{{ yourText }}</button>
 </template>
 
 <style>
