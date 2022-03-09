@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated } from 'vue'
-import NumUpdate from './components/NumUpdate-G2.vue'
+import NumUpdate from './components/NumUpdate.vue'
 onMounted(() => {
   alert(`on mounted: ${num.value}`) //5
   num.value = 10

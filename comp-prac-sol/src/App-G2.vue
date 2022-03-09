@@ -1,6 +1,6 @@
 <script setup>
 import IconGalaAirplay from './components/Icons/IconGalaAirplay.vue'
-import ListItems from './components/ListItems.vue'
+import ListItems from './components/ListItems-G2.vue'
 import { ref } from 'vue'
 const projects = [
   { section: 1, group: 1, title: 'Bingo' },

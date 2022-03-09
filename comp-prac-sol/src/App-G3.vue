@@ -1,6 +1,6 @@
 <script setup>
 //on created
-import IconFavorite from './components/IconFavorite.vue'
+import IconFavorite from './components/Icons/IconFavorite.vue'
 import ListItems from './components/ListItems-G3.vue'
 import { ref } from 'vue'
 const products = [
