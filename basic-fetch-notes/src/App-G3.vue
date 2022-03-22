@@ -49,14 +49,14 @@ const toEditMode = (editNote) => {
   console.log(editNote)
   editingNote.value = editNote
 }
-const updateNote = async (editingNote) => {
-  const res = await fetch(`http://localhost:5000/notes/${editingNote.id}`, {
+const updateNote = async (replaceNote) => {
+  const res = await fetch(`http://localhost:5000/notes/${replaceNote.id}`, {
     method: 'PUT',
     headers: {
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      noteDetail: editingNote.noteDetail
+      noteDetail: replaceNote.noteDetail
     })
   })
   if (res.status === 200) {
@@ -68,6 +68,8 @@ const updateNote = async (editingNote) => {
     )
     console.log('edited successfully')
   } else console.log('error, cannot be added')
+
+  editingNote.value = {}
 }
 </script>
 

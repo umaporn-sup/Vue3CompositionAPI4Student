@@ -1,36 +1,34 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import CreateEditNote from './components/CreateEditNote-G2.vue'
-import NoteList from './components/NoteList-G2.vue'
+import NoteList from './components/NoteList-G3.vue'
+import CreateEditNote from './components/CreateEditNote.vue'
 const notes = ref([])
 // GET
-onBeforeMount(async () => {
-  await getNotes()
-  console.log(notes.value)
-})
-
 const getNotes = async () => {
   const res = await fetch('http://localhost:5000/notes')
   if (res.status === 200) {
     notes.value = await res.json()
     console.log(notes.value)
-    return notes.value
-  } else console.log('error, cannot get notes')
+  } else console.log('error, cannot get data')
 }
+onBeforeMount(async () => {
+  await getNotes()
+})
 
-//DELETE
-const removeNote = async (removeNoteId) => {
-  const res = await fetch(`http://localhost:5000/notes/${removeNoteId}`, {
+// DELETE
+const removeNote = async (deleteNoteId) => {
+  console.log(deleteNoteId)
+  const res = await fetch(`http://localhost:5000/notes/${deleteNoteId}`, {
     method: 'DELETE'
   })
   if (res.status === 200) {
-    notes.value = notes.value.filter((note) => note.id !== removeNoteId)
-    console.log('deleted successfullly')
-  } else console.log('error, cannot delete')
+    notes.value = notes.value.filter((note) => note.id !== deleteNoteId)
+    console.log('deleted successfully')
+  } else console.log('error, cannot delete data')
 }
-
-// CREATE
+// POST
 const createNewNote = async (newNote) => {
+  console.log(newNote)
   const res = await fetch('http://localhost:5000/notes', {
     method: 'POST',
     headers: {
@@ -41,37 +39,37 @@ const createNewNote = async (newNote) => {
   if (res.status === 201) {
     const addedNote = await res.json()
     notes.value.push(addedNote)
+    console.log('added sucessfully')
+  } else console.log('error, cannot be added')
+}
 
-    console.log('created successfully')
-  } else console.log('error, cannot create')
-}
-// EDIT
+// PUT
 const editingNote = ref({})
-const toEditingMode = (editNote) => {
+const toEditMode = (editNote) => {
+  console.log(editNote)
   editingNote.value = editNote
-  console.log(editingNote.value)
 }
-const modifyNote = async (editingNote) => {
-  const res = await fetch(`http://localhost:5000/notes/${editingNote.id}`, {
+const updateNote = async (replaceNote) => {
+  const res = await fetch(`http://localhost:5000/notes/${replaceNote.id}`, {
     method: 'PUT',
     headers: {
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      noteDetail: editingNote.noteDetail
+      noteDetail: replaceNote.noteDetail
     })
   })
-
   if (res.status === 200) {
-    const modifyNote = await res.json()
+    const editedNote = await res.json()
     notes.value = notes.value.map((note) =>
-      note.id === modifyNote.id
-        ? { ...note, noteDetail: modifyNote.noteDetail }
+      note.id === editedNote.id
+        ? { ...note, noteDetail: editedNote.noteDetail }
         : note
     )
-
     console.log('edited successfully')
-  } else console.log('error, cannot edit')
+  } else console.log('error, cannot be added')
+
+  editingNote.value = {}
 }
 </script>
 
@@ -80,13 +78,9 @@ const modifyNote = async (editingNote) => {
     <CreateEditNote
       @createNote="createNewNote"
       :currentNote="editingNote"
-      @updateNote="modifyNote"
+      @updateNote="updateNote"
     />
-    <NoteList
-      :noteList="notes"
-      @deleteNote="removeNote"
-      @editNote="toEditingMode"
-    />
+    <NoteList :notes="notes" @deleteNote="removeNote" @editNote="toEditMode" />
   </div>
 </template>
 

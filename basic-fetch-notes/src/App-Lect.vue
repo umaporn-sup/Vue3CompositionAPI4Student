@@ -1,15 +1,14 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import CreateEditNote from './components/CreateEditNote-G2.vue'
-import NoteList from './components/NoteList-G2.vue'
+import CreateEditNote from './components/CreateEditNote.vue'
+import NoteList from './components/NoteList.vue'
 const notes = ref([])
-
+// GET
 onBeforeMount(async () => {
   await getNotes()
   console.log(notes.value)
 })
 
-// GET
 const getNotes = async () => {
   const res = await fetch('http://localhost:5000/notes')
   if (res.status === 200) {
@@ -48,6 +47,7 @@ const createNewNote = async (newNote) => {
 }
 // EDIT
 const editingNote = ref({})
+
 const toEditingMode = (editNote) => {
   editingNote.value = editNote
   console.log(editingNote.value)
@@ -72,6 +72,7 @@ const modifyNote = async (replaceNote) => {
     )
 
     console.log('edited successfully')
+    editingNote.value = {}
   } else console.log('error, cannot edit')
 }
 </script>
@@ -84,7 +85,7 @@ const modifyNote = async (replaceNote) => {
       @updateNote="modifyNote"
     />
     <NoteList
-      :noteList="notes"
+      :notes="notes"
       @deleteNote="removeNote"
       @editNote="toEditingMode"
     />
