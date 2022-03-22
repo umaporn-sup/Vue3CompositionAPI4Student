@@ -69,7 +69,7 @@ const updateNote = async (replaceNote) => {
     console.log('edited successfully')
   } else console.log('error, cannot be added')
 
-  editingNote.value = {}
+  editingNote.value = ''
 }
 </script>
 
